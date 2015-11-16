@@ -1,0 +1,50 @@
+void user3()
+{   int ch,option,cost_each=250,total_cost=1500,chrage=12.5,ids[]={1402,1403,1404,1405,1406,1407,0};
+
+    //---------------------------------------------
+    FILE *fp;
+    fp=fopen("user3.DAT","r");
+    if(fp==NULL)
+    {
+        printf("file cannot be opened\n");
+        main();
+    }//end if
+    ch = getc(fp);
+   while(ch != EOF)
+   {
+     putchar(ch);
+     ch = getc(fp);
+   }//end while
+   //----------------------------------------------
+   printf("\n1.Cancel \n2.Back to login");
+   printf("\nEnter your choice\n");
+   scanf("%d",&option);
+   //----------------------------------------------
+   if(option==1)
+  {   system("cls");
+      Insert(0,"0 ","0  ","0        ","0     ",0 ,"0        ",0   );
+      //-----------------------------------------------------------------
+      Insert(1,"A3","S20","Mathew.M ","Male  ",25,"RESERVED ",1402);
+      Insert(2,"A3","S21","Oliver.Q ","Male  ",26,"RESERVED ",1403);
+      Insert(3,"A3","S22","Barry.A  ","Male  ",21,"RESERVED ",1404);
+      Insert(4,"A3","S23","Peter.p  ","Male  ",21,"RESERVED ",1405);
+      Insert(5,"A3","S24","Tony.S   ","Male  ",27,"RESERVED ",1406);
+      Insert(6,"A3","S25","Bruce.B  ","Male  ",30,"RESERVED ",1407);
+      //------------------------------------------------------------------
+      Insert(0,"0 ","0  ","0        ","0     ",0 ,"0        ",0   );
+      print(list);
+      cancel(cost_each,total_cost,chrage,ids);
+}//end if
+ else if(option==2)
+    {
+     system("cls");
+     login();
+    }//end else if
+    else
+    {
+        system("cls");
+        printf("\n**********Invaid Choice**********\n");
+        printf("\n**********Enter again************\n");
+        user3();
+    }//end else
+}//end user3
