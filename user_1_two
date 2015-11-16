@@ -1,0 +1,31 @@
+void user1_two()
+{
+int option;
+printf("\nReservation Details\n");
+printf("1.Chennai to Mysore\n");
+printf("2.Dharwad to goa\n");
+printf("3.Logout\n");
+printf("Choose option\n");
+scanf("%d",&option);
+  if(option==1)
+   {
+    system("cls");
+    user1_1();
+   }//end if
+  else if(option==2)
+   {
+    system("cls");
+    user1_2();
+   }//end else if
+   else if(option==3)
+   {
+   system("cls");
+   login();
+   }
+   else
+   {
+       printf("\nWrong choice\n");
+       printf("Enter again\n");
+       user1_two();
+   }
+}//end user1_two
