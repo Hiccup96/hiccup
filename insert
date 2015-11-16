@@ -1,0 +1,39 @@
+struct Node *GetNewNode(int tsno,char tcoachno[SIZE_2],char tseatno[SIZE_2],char tname[SIZE_1],char tgender[SIZE_1],int tage,char tstatus[SIZE_1],int tid)
+{
+	struct Node *newNode= (struct Node*)malloc(sizeof(struct Node));                                    //Dynamic allocation
+     //---------------------------------------------
+    //Fill in the info part
+	newNode->sno = tsno;
+	strcpy(newNode->coachno,tcoachno);
+	strcpy(newNode->seatno,tseatno);
+	strcpy(newNode->name,tname);
+	strcpy(newNode->gender,tgender);
+	newNode->age=tage;
+	strcpy(newNode->status,tstatus);
+	newNode->id=tid;
+    //---------------------------------------------
+	newNode->prev = NULL;
+	newNode->next = NULL;
+	return newNode;
+}//end GetNewNode
+
+//Postcondition-Check if the linked list is empty
+//Precondition-Insertion of Passenger Details nodes in the linked list
+void Insert(int tsno,char tcoachno[SIZE_2],char tseatno[SIZE_2],char tname[SIZE_1],char tgender[SIZE_1],int tage,char tstatus[SIZE_1],int tid)
+{
+	struct Node *temp = list;
+	struct Node *newNode = GetNewNode(tsno,tcoachno,tseatno,tname,tgender,tage,tstatus,tid);
+	//check for empty list
+	if(list == NULL)
+    {
+		list = newNode;
+		return;
+	}//end if
+	//if list is not empty
+	while(temp->next != NULL)
+    {
+        temp = temp->next;                                                        // Go To last Node
+    }
+	temp->next = newNode;
+	newNode->prev = temp;
+}//end Insert
