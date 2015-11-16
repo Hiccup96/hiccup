@@ -1,0 +1,28 @@
+void delete (int value )
+{
+    struct Node* p;
+    p=list;
+    struct Node* q;
+    struct Node* r;
+    if(p==NULL)
+    {
+        printf("void deletion\n");
+        return;
+    }//end if
+    while(p->id!=value)
+    {
+        p=p->next;
+    }//end while
+    q=p->prev;
+    r=p->next;
+    q->next=r;
+    r->prev=q;
+    free(p);
+    system("cls");
+    printf("\n**************************Cancellation done successfully for ID number %d*************************\n",value);
+    print(list);
+    printf("\nPlease wait..\n");
+    Sleep(3000);
+    return;
+
+}
