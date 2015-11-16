@@ -1,0 +1,92 @@
+void cancel(int cost_each,int total_cost,int charge,int ids[])
+{
+    int verified_id[SIZE_1],num_cancel,i,refund,delete_id,actual_number,temp_id,j,f=0;
+
+    printf("Enter the number of tickets to be canceled\n");
+    scanf("%d",&num_cancel);
+    //count the actual number of tickets
+    for(actual_number=0;ids[actual_number]!=0;actual_number++);
+    //---------------------------------------------
+    //if Number entered for cancellation is not valid then show error else continue with cancellation
+    if(num_cancel>actual_number || num_cancel<=0)
+    {
+        printf("\n-------Invalid Entry------------------------------------------------------------------------\n");
+        printf("\n-------Entered Number is greater than Number of booked tickets or invalid-------------------\n ");
+        printf("\n-------Enter again--------------------------------------------------------------------------\n\n");
+        cancel(cost_each,total_cost,charge,ids);
+    }//end if
+    //---------------------------------------------
+    //prompt the user to enter the id numbers of passengers whose tickets are to be canceled
+    //it also checks whether the entered ID numbers are valid or not
+    for(i=0;i<num_cancel;i++)
+    {
+        f=0;
+        printf("Enter the ID number of tickets to canceled\n");
+        scanf("%d",&temp_id);
+        for(j=0;ids[j]!=0;j++)
+        {
+         if(temp_id==ids[j])
+          {
+            verified_id[i]=ids[j];
+            f=1;
+          }//end if
+        }//end for
+        if(f==0)
+       {
+        printf("\n--------------Invalid Entry-----------------------------------------------------------\n");
+        printf("\n--------------ID dosent exsist--------------------------------------------------------\n");
+        printf("\n--------------Enter again-------------------------------------------------------------\n\n");
+        cancel(cost_each,total_cost,charge,ids);
+       }//end if
+    }//end for
+    //---------------------------------------------
+    //Delete the nodes of given ID numbers from linked list
+    for(i=0;i<num_cancel;i++)
+    {
+        delete_id=verified_id[i];
+        delete(delete_id);
+    }//end for
+    //---------------------------------------------
+    //Refund part
+      printf("\n*******************************************************************************************************************\n");
+      printf("Cost of each ticket is:%d\n",cost_each);
+      printf("Number of Tickets canceled:%d\n",num_cancel);
+      printf("Cancellation Charge(5 percent):Rs %d\n",charge);
+      printf("Total cost:%d",(cost_each*num_cancel));
+      refund=(cost_each*num_cancel)-(charge*num_cancel);
+      printf("\n*******************************************************************************************************************\n");
+      printf("Total amount refunded=%d\n",refund);
+      printf("\n*******************************************************************************************************************\n");
+    //---------------------------------------------
+    //Notification part
+      FILE *fpp;
+      fpp=fopen("User_Notification.DAT","w");
+      fprintf(fpp,"\nYour Cancellation request for Ticket has been Successfully Completed.");
+      fprintf(fpp,"\nThe Cancellation have been done for following IDs\n");
+      for(i=0;i<num_cancel;i++)
+      {
+          delete_id=verified_id[i];
+          if(delete_id==ids[0])
+              fprintf(fpp,"%d.ID-%d\n",i+1,verified_id[i]);
+          else if(delete_id==ids[1])
+              fprintf(fpp,"%d.ID-%d\n",i+1,verified_id[i]);
+          else if(delete_id==ids[2])
+              fprintf(fpp,"%d.ID-%d\n",i+1,verified_id[i]);
+          else if(delete_id==ids[3])
+              fprintf(fpp,"%d.ID-%d\n",i+1,verified_id[i]);
+          else if(delete_id==ids[4])
+              fprintf(fpp,"%d.ID-%d\n",i+1,verified_id[i]);
+          else if(delete_id==ids[5])
+              fprintf(fpp,"%d.ID-%d\n",i+1,verified_id[i]);
+          else if(delete_id==ids[6])
+              fprintf(fpp,"%d.ID-%d\n",i+1,verified_id[i]);
+          else if(delete_id==ids[7])
+              fprintf(fpp,"%d.ID-%d\n",i+1,verified_id[i]);
+      }//end for
+      fclose(fpp);
+      printf("\n*******************************************************************************************************************\n");
+      printf("\nA notification has been sent to your contact number\n");
+      printf("Thank you\n");
+      printf("\n*******************************************************************************************************************\n");
+    //---------------------------------------------
+}
