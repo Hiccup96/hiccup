@@ -1,0 +1,19 @@
+void print(struct Node *pointer)
+{
+    pointer=pointer->next;
+
+	while(pointer->next!= NULL)
+    {
+        printf("|");
+		printf("%d         |",pointer->sno);
+		printf("%s         |",pointer->coachno);
+		printf("%s         |",pointer->seatno);
+		printf("%s         |",pointer->name);
+		printf("%s         |",pointer->gender);
+		printf("%d         |",pointer->age);
+		printf("%s         |",pointer->status);
+		printf("%d         |",pointer->id);
+		printf("\n");
+		pointer = pointer->next;
+	}//end while
+}//end print
